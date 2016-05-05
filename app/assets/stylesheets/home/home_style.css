@@ -1,0 +1,11 @@
+html, body {
+  height: 100%;
+}
+
+#map-canvass {
+  height: 50%;
+}
+
+#pac-location-input {
+  width: 50%;
+}

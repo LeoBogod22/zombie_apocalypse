@@ -1,0 +1,70 @@
+<h5>Results</h5>
+<div id="results"></div>
+
+
+<h5>Form</h5>
+<form  id="pac-location-form">
+  <input id="pac-location-input" type="text" name="pac-location-input">
+  <input type="submit" style="visibility: hidden">
+</form>
+
+
+<hr>
+<div id="map-canvass"></div>
+
+
+
+<script type="text/javascript">
+  var map;
+  var geocoder;
+  var pacLocationInput = $("#pac-location-input");
+
+  function initGoogleMap () {
+    var defaultAddress = "New York, NY";
+
+    geocoder = new google.maps.Geocoder();
+
+    map = new google.maps.Map($("#map-canvass")[0], {zoom: 15, center: {lat: -34.397, lng: 150.644}});
+
+    var autocomplete = new google.maps.places.Autocomplete(pacLocationInput[0]);
+
+    setGoogleMapLocation(defaultAddress);
+    locationInputListener();
+  }
+
+
+  function setGoogleMapLocation (address) {
+    // Get geolocation of default address and set map to that location
+    geocoder.geocode({'address': address}, function(results, status){
+      if (status === google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+        });
+      } else {
+        console.log("Something went wrong when setting the location: " + status);
+      }
+    });    
+  }
+
+  function locationInputListener () {
+
+    $("#pac-location-form").submit(function(e){
+      e.preventDefault();
+
+      var locationInput = $("#pac-location-input").val();
+      setGoogleMapLocation(locationInput);
+    });    
+
+
+
+  }
+
+
+  $(function(){
+    initGoogleMap();
+  });
+
+</script>
