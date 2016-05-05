@@ -3,9 +3,13 @@ html, body {
 }
 
 #map-canvass {
-  height: 50%;
+  height: 75%;
 }
 
 #pac-location-input {
   width: 50%;
+}
+
+.pac-container {
+  z-index: 5;
 }
