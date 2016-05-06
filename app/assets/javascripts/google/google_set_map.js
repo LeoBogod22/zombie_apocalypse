@@ -43,11 +43,16 @@ function setGoogleMapLocation (address) {
   // Get geolocation of default address and set map to that location
   geocoder.geocode({'address': address}, function(results, status){
     if (status === google.maps.GeocoderStatus.OK) {
+
       currentCoords = {lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng()};
+
 
       map.setCenter(results[0].geometry.location);
       if (address != defaultAddress){
         findAndMapServices();
+
+        createLocation(results[0]);
+
       }
     } else {
       console.log("Something went wrong when trying to set the location: " + status);
@@ -70,8 +75,14 @@ function findAndMapServices () {
     'doctor',
     'hardware_store',
     'gas_station',
+    'shopping_mall',
     'airport',
-    'parking'
+    'parking',
+    'liquor_store',
+    'bar',
+    'night_club',
+    'police',
+    'locksmith'
   ];
 
   for (var i = 0; i < types.length; i++) {
@@ -86,8 +97,9 @@ function findAndMapServices () {
 // Takes results from Google PlacesService's nearbySearch call and marks each result on map
 function mapServicesCallback(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
+    for (var i = 0; i < results.length && i < 5; i++) {
       placeMarker(map, results[i]);
+      createPlace(results[i]);
     }
   }
 }
