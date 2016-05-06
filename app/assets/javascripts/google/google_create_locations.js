@@ -44,18 +44,18 @@ function createPlace (placeObject) {
 
   var resourceType;
 
-  for (var i = placeObject.types.length - 1; i >= 0; i--) {
-    if (types.indexOf(placeObject.types[i])) {
+  for (var i = 0; i < placeObject.types.length; i++) {
+    if (types.indexOf(placeObject.types[i]) >= 0) {
 
-      if (placeObject.types[i]) === 'natural_feature') {
-        if (placeObject.types[i].indexOf(/pond|lake|river/ig) < 0) {
-          break;
-        }
+
+      if (placeObject.types[i] === 'natural_feature' && placeObject.name.search(/(\bpond\b|\blake\b|\briver\b)/ig) < 0) {
+        break;
       }
 
       resourceType = placeObject.types[i];
       break;
-    };
+
+    }
   };
 
   var placeInfo
@@ -65,11 +65,17 @@ function createPlace (placeObject) {
       address: placeObject.vicinity,
       resource_type: resourceType,
       latitude: placeObject.geometry.location.lat(),
-      longitude placeObject.geometry.location.lng()
+      longitude: placeObject.geometry.location.lng()
     };
+
+    $("#results").append("Place result: " + JSON.stringify(placeInfo) + "<br><br>");
+
+
+    // POST /places
+    
   }
 
-
-  // POST /places
-
 }
+
+
+
