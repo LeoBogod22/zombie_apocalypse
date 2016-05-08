@@ -9,8 +9,15 @@ class LocationsController < ApplicationController
   end
 
   def create    
-    @location = Location.create(address: params["address"], latitude: params["latitude"], longitude: params["longitude"])
-    redirect_to location_path(@location)
+    @location = Location.first_or_create(address: params["address"], latitude: params["latitude"], longitude: params["longitude"])
+    
+
+    if @location.errors.any?
+      render json: {errors: @location.errors.full_messages}, status: 422
+    else
+      render json: @location  
+    end
+    
   end
 
 

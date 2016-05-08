@@ -6,13 +6,30 @@ function createLocation (locationObject) {
     longitude: locationObject.geometry.location.lng()
   };
 
-  $("#results").append("Location results: " + JSON.stringify(locationInfo) + "<br><br>");
+  // POST /locations
 
-  // $.post("/locations", {
-  //   address: locationObject.formatted_address,
-  //   latitude: locationObject.geometry.location.lat(),
-  //   longitude: locationObject.geometry.location.lng()
-  // });
+  $.ajax({
+    url: "/locations",
+    method: "POST",
+    data: JSON.stringify(locationInfo),
+    dataType: "json",
+    contentType: 'application/json',
+    success: function(results){
+      // debugger;
+      $("#location-results").attr("data-id", results.id);
+
+      var resultsDisplay = 
+        "<strong>Address:</strong> " + results.address + "<br>" +
+        "<strong>Latitude:</strong> " + results.latitude + "<br>" + 
+        "<strong>Longitude:</strong> " + results.longitude;
+
+      $("#location-results").append(resultsDisplay);
+    },
+    fail: function(error) {
+      console.log("There was an error saving your location: " + error);
+      $("#location-results").append("There were no results for your location.");
+    }
+  });
 }
 
 function createPlace (placeObject) {
@@ -63,16 +80,32 @@ function createPlace (placeObject) {
     placeInfo = {
       name: placeObject.name,
       address: placeObject.vicinity,
-      resource_type: resourceType,
+      resource_type: placeResourceConversion[resourceType],
       latitude: placeObject.geometry.location.lat(),
-      longitude: placeObject.geometry.location.lng()
+      longitude: placeObject.geometry.location.lng(),
+      location_id: $("#location-results").data("id")
     };
+
+    debugger;
 
     $("#results").append("Place result: " + JSON.stringify(placeInfo) + "<br><br>");
 
 
     // POST /places
-    
+
+    // $.ajax({
+    //   url: "/places",
+    //   method: "POST",
+    //   data: JSON.stringify(placeInfo),
+    //   dataType: "json",
+    //   contentType: "application/json",
+    //   success: function(results) {
+    //     // Do something with results
+    //   },
+    //   fail: function(error) {
+    //     console.log("There was an error saving your place: " + error);
+    //   }      
+    // });
   }
 
 }
