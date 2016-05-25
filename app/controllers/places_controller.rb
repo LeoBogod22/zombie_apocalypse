@@ -2,7 +2,7 @@ class PlacesController < ApplicationController
   require 'json'
 
   def index
-    @places = Location.last.places
+    @places = Place.all
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @places}
@@ -18,8 +18,8 @@ class PlacesController < ApplicationController
   end
 
   def create
-    @places = params["resource_type"]["types"].each_with_index.collect do |resource, index|
-      Place.first_or_create(
+    @places = params["resource_type"]["types"].each_with_index.map do |resource, index|
+      Place.find_or_create_by(
         location_id: params["location_id"],
         name: params["name"],
         address: params["address"],
@@ -30,11 +30,13 @@ class PlacesController < ApplicationController
       )
     end
 
-    if @places.errors.any?
-      render json: {errors: @places.errors.full_messages}, status: 422
-    else
-      render json: @places
+    @places.each do |place|
+      if place.errors.any?
+        render json: {errors: place.errors.full_messages}
+      end
     end
+
+    render json: @places[0]
   end
 
 

@@ -17,11 +17,14 @@ function createLocation (locationObject) {
       $("#location-results").attr("data-id", results.location.id);
 
       var resultsDisplay =
-        "<strong>Address:</strong> " + results.location.address + "<br>" +
-        "<strong>Latitude:</strong> " + results.location.latitude + "<br>" +
-        "<strong>Longitude:</strong> " + results.location.longitude;
+        "<div id='location-basic-info'>" +
+          "<strong>Your location:</strong> " + results.location.address + "<br>" +
+        "</div><br>" +
+        "<a href='' id='more-location-info'>See more</a>";
 
       $("#location-results").append(resultsDisplay);
+
+      locationClickCallback();
     },
     fail: function(error) {
       console.log("There was an error saving your location: " + error);
@@ -84,25 +87,21 @@ function createPlace (placeObject) {
       location_id: $("#location-results").data("id")
     };
 
-    debugger;
-
-    $("#results").append("<div>Place result: " + JSON.stringify(placeInfo) + "</div>");
-
     // POST /places
 
-    // $.ajax({
-    //   url: "/places",
-    //   method: "POST",
-    //   data: JSON.stringify(placeInfo),
-    //   dataType: "json",
-    //   contentType: "application/json",
-    //   success: function(results) {
-    //     // Do something with results
-    //   },
-    //   fail: function(error) {
-    //     console.log("There was an error saving your place: " + error);
-    //   }
-    // });
+    $.ajax({
+      url: "/places",
+      method: "POST",
+      data: JSON.stringify(placeInfo),
+      contentType: "application/json",
+      dataType: "json",
+      success: function(results) {
+        console.log("Create place record from following info: " + JSON.stringify(placeInfo));
+      },
+      fail: function(error) {
+        console.log("There was an error saving your place: " + error);
+      }
+    });
   }
 
 }
