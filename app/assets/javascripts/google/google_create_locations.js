@@ -1,5 +1,4 @@
 function createLocation (locationObject) {
-  // debugger;
   var locationInfo = {
     address: locationObject.formatted_address,
     latitude: locationObject.geometry.location.lat(),
@@ -15,13 +14,12 @@ function createLocation (locationObject) {
     dataType: "json",
     contentType: 'application/json',
     success: function(results){
-      // debugger;
-      $("#location-results").attr("data-id", results.id);
+      $("#location-results").attr("data-id", results.location.id);
 
-      var resultsDisplay = 
-        "<strong>Address:</strong> " + results.address + "<br>" +
-        "<strong>Latitude:</strong> " + results.latitude + "<br>" + 
-        "<strong>Longitude:</strong> " + results.longitude;
+      var resultsDisplay =
+        "<strong>Address:</strong> " + results.location.address + "<br>" +
+        "<strong>Latitude:</strong> " + results.location.latitude + "<br>" +
+        "<strong>Longitude:</strong> " + results.location.longitude;
 
       $("#location-results").append(resultsDisplay);
     },
@@ -104,11 +102,8 @@ function createPlace (placeObject) {
     //   },
     //   fail: function(error) {
     //     console.log("There was an error saving your place: " + error);
-    //   }      
+    //   }
     // });
   }
 
 }
-
-
-

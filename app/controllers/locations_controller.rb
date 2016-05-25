@@ -2,22 +2,30 @@ class LocationsController < ApplicationController
   require 'json'
 
   def index
+    @locations = Location.all
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @locations}
+    end
   end
 
   def show
     @location = Location.find(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @location}
+    end
   end
 
-  def create    
+  def create
     @location = Location.first_or_create(address: params["address"], latitude: params["latitude"], longitude: params["longitude"])
-    
 
     if @location.errors.any?
       render json: {errors: @location.errors.full_messages}, status: 422
     else
-      render json: @location  
+      render json: @location
     end
-    
+
   end
 
 
