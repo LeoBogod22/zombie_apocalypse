@@ -22,8 +22,15 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+# Serialize models to json
 gem 'active_model_serializers'
+
+# Handle http requests on server side
 gem 'faraday'
+
+# Bootstrap
+gem 'bootstrap-sass', '~> 3.3.6'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -33,11 +33,11 @@ function locationInputListener () {
     var locationInput = $("#pac-location-input").val();
     setGoogleMapLocation(locationInput);
 
-  });    
+  });
 
 }
 
-// Takes an address string and searches for geolocation coordinates. 
+// Takes an address string and searches for geolocation coordinates.
 // Centers map on coordinates then finds and places markers for select places
 function setGoogleMapLocation (address) {
   // Get geolocation of default address and set map to that location
@@ -49,15 +49,13 @@ function setGoogleMapLocation (address) {
 
       map.setCenter(results[0].geometry.location);
       if (address != defaultAddress){
-        findAndMapServices();
-
         createLocation(results[0]);
-
+        findAndMapServices();
       }
     } else {
       console.log("Something went wrong when trying to set the location: " + status);
     }
-  });  
+  });
 }
 
 // Called from setGoogleMapLocation
@@ -90,7 +88,7 @@ function findAndMapServices () {
       location: currentCoords,
       radius: milesToMeters(0.5),
       type: [types[i]]
-    }, mapServicesCallback);      
+    }, mapServicesCallback);
   };
 }
 
@@ -116,13 +114,3 @@ function placeMarker (map, place) {
     infowindow.open(map, this);
   });
 }
-
-
-
-
-
-
-
-
-
-

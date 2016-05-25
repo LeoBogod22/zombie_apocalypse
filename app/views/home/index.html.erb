@@ -1,22 +1,29 @@
-<h5>Results</h5>
-<div id="results">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      
+      <div class="google-pac-container">
+        <h5>Form</h5>
+        <form id="pac-location-form">
+          <input id="pac-location-input" type="text" name="pac-location-input">
+          <input type="submit" style="visibility: hidden">
+        </form>
+      </div>
 
-  <div id="location-results"></div>
+      <div id="map-canvass"></div>
 
-  <div id="place-results"></div>
+    </div>
 
+    <div id="results" class="col-xs-6">
+      <h5>Results</h5>
+      <div id="location-results"></div>
+      <div id="place-results"></div>
+    </div>
+
+  </div>
 </div>
 
-
-<h5>Form</h5>
-<form  id="pac-location-form">
-  <input id="pac-location-input" type="text" name="pac-location-input">
-  <input type="submit" style="visibility: hidden">
-</form>
-
-
 <hr>
-<div id="map-canvass"></div>
 
 
 <script type="text/javascript">

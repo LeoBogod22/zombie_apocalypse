@@ -48,7 +48,7 @@ function createPlace (placeObject) {
     'bar':                    {'types': ['other'], 'count': [2]},
     'night_club':             {'types': ['other'], 'count': [2]},
     'police':                 {'types': ['weapons'], 'count': [10]},
-    'locksmith':              {'types': ['other'], 'count': [5]}
+    'locksmith':              {'types': ['tools'], 'count': [5]}
   };
 
   var types =  [
@@ -86,8 +86,7 @@ function createPlace (placeObject) {
 
     debugger;
 
-    $("#results").append("Place result: " + JSON.stringify(placeInfo) + "<br><br>");
-
+    $("#results").append("<div>Place result: " + JSON.stringify(placeInfo) + "</div>");
 
     // POST /places
 
