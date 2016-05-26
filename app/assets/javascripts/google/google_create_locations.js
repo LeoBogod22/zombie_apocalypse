@@ -16,13 +16,11 @@ function createLocation (locationObject) {
     success: function(results){
       $("#location-results").attr("data-id", results.location.id);
 
-      var resultsDisplay =
-        "<div id='location-basic-info'>" +
-          "<strong>Your location:</strong> " + results.location.address + "<br>" +
-        "</div><br>" +
-        "<a href='' id='more-location-info'>See more</a>";
+      var locationAddress = "<strong>Your location:</strong> " + results.location.address + "<br>";
+      var locationSeeMoreLink = "<a href='' id='more-location-info'>See more</a>";
 
-      $("#location-results").append(resultsDisplay);
+      $("#location-address").append(locationAddress);
+      $("#location-results").append(locationSeeMoreLink);
 
       locationClickCallback();
     },

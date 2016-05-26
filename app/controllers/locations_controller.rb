@@ -18,7 +18,7 @@ class LocationsController < ApplicationController
   end
 
   def create
-    @location = Location.first_or_create(address: params["address"], latitude: params["latitude"], longitude: params["longitude"])
+    @location = Location.find_or_create_by(address: params["address"], latitude: params["latitude"], longitude: params["longitude"])
 
     if @location.errors.any?
       render json: {errors: @location.errors.full_messages}, status: 422
