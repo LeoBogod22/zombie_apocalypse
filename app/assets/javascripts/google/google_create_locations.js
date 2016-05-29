@@ -48,7 +48,7 @@ function createPlace (placeObject) {
     'liquor_store':           {'types': ['other'], 'count': [2]},
     'bar':                    {'types': ['other'], 'count': [2]},
     'night_club':             {'types': ['other'], 'count': [2]},
-    'police':                 {'types': ['weapons'], 'count': [10]},
+    'police':                 {'types': ['weapons'], 'count': [30]},
     'locksmith':              {'types': ['tools'], 'count': [5]}
   };
 
