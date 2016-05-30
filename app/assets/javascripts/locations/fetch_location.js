@@ -2,7 +2,9 @@ function locationClickCallback () {
   $("#more-location-info").click(function (e) {
     e.preventDefault();
     var id = $("#location-results").data("id");
+
     getLocation(id);
+    $(e.target).hide();
   });
 }
 
@@ -13,6 +15,7 @@ function getLocation (id) {
     dataType: 'json',
     success: function (results) {
       $("#location-results").append(JSON.stringify(results.location));
+
     },
     fail: function(error) {
       console.log("There was an error saving your place: " + error);

@@ -42,6 +42,7 @@ function resetGoogleMapLocation (address) {
       if (address != defaultAddress){
         createLocation(results[0]);
         findAndMapPlaces(map, currentCoords);
+        // placeClickCallback();
       }
 
     } else {
