@@ -52,31 +52,23 @@ function createPlace (placeObject) {
     'locksmith':              {'types': ['tools'], 'count': [5]}
   };
 
-  var types =  [
-    'natural_feature', 'convenience_store', 'grocery_or_supermarket', 'hospital', 'pharmacy',
-    'doctor', 'hardware_store', 'gas_station', 'shopping_mall', 'airport',
-    'parking', 'liquor_store', 'bar', 'night_club', 'police', 'locksmith'
-  ];
-
   var resourceType;
-
+  // Look through the place object's types and find the type that matches.
+  // If the type is a natural_feature but is not a natural source of water (pond, lake, river), break from the loop
+  // Else get the resource type then break
   for (var i = 0; i < placeObject.types.length; i++) {
     if (types.indexOf(placeObject.types[i]) >= 0) {
-
-
       if (placeObject.types[i] === 'natural_feature' && placeObject.name.search(/(\bpond\b|\blake\b|\briver\b)/ig) < 0) {
         break;
+      } else {
+        resourceType = placeObject.types[i];
+        break;
       }
-
-      resourceType = placeObject.types[i];
-      break;
-
     }
   };
 
-  var placeInfo
   if (resourceType) {
-    placeInfo = {
+    var placeInfo = {
       name: placeObject.name,
       address: placeObject.vicinity,
       resource_type: placeResourceConversion[resourceType],
@@ -102,4 +94,31 @@ function createPlace (placeObject) {
     });
   }
 
+}
+
+function createGunShop (placeObject) {
+  var placeInfo = {
+    name: placeObject.name,
+    address: placeObject.vicinity,
+    resource_type: {'types': ['weapons'], 'count': [30]},
+    latitude: placeObject.geometry.location.lat(),
+    longitude: placeObject.geometry.location.lng(),
+    location_id: $("#location-results").data("id")
+  };
+
+  // POST /places
+
+  $.ajax({
+    url: '/places',
+    method: 'POST',
+    data: JSON.stringify(placeInfo),
+    contentType: 'application/json',
+    dataType: 'json',
+    success: function(results) {
+      console.log("Create place record from following info: " + JSON.stringify(placeInfo));
+    },
+    fail: function(error) {
+      console.log("There was an error saving your place: " + error);
+    }
+  });
 }

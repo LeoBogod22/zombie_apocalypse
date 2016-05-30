@@ -12,7 +12,6 @@ function getLocation (id) {
     method: 'GET',
     dataType: 'json',
     success: function (results) {
-      getPopulationDensity(results.location.latitude, results.location.longitude);
       $("#location-results").append(JSON.stringify(results.location));
     },
     fail: function(error) {
