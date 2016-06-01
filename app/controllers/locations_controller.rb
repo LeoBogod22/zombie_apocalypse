@@ -1,6 +1,7 @@
 class LocationsController < ApplicationController
   require 'json'
 
+  # GET /locations
   def index
     @locations = Location.all
     respond_to do |format|
@@ -9,12 +10,22 @@ class LocationsController < ApplicationController
     end
   end
 
+  # GET /locations/:id
   def show
     @location = Location.find(params[:id])
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @location}
     end
+  end
+
+  # GET /locations/:id/survival
+  # Renders json survival stats.
+  # Is a separate route because population_density attribute makes an api call to DataScienceToolKit
+  # Causes noticeable delay in location load time and decided to put survival stats as a separate ajax call for better UX
+  def survival
+    @location = Location.find(params[:id])
+    render json: @location, serializer: LocationSurvivalSerializer
   end
 
   def create

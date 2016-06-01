@@ -1,0 +1,9 @@
+.results-display {
+  overflow: scroll;
+}
+
+#location-results-navbar, #location-results, #place-resources-navbar, #place-results {
+  display: none;
+}
+
+/*#location-results*/

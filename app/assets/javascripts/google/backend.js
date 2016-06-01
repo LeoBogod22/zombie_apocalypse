@@ -20,7 +20,7 @@ function createLocation (locationObject) {
       var locationSeeMoreLink = "<a href='' id='more-location-info'>See more</a>";
 
       $("#location-address").append(locationAddress);
-      $("#location-results").append(locationSeeMoreLink);
+      $("#location-results-container").append(locationSeeMoreLink);
 
       locationClickCallback();
     },

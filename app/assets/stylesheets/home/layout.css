@@ -1,0 +1,27 @@
+html, body, #app-container, #app-container .row {
+  height: 100%;
+}
+
+#map-canvass {
+  height: 300px;
+}
+
+#pac-location-input {
+  width: 50%;
+}
+
+.pac-container {
+  z-index: 5;
+}
+
+#results {
+  height: 100%;
+}
+
+#results-header {
+  height: 10%;
+}
+
+#location-results-container, #place-results-container {
+  height: 45%;
+}

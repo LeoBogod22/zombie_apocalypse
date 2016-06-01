@@ -1,4 +1,4 @@
 /*
 *= require application
-*= require 'home/home_style'
+*= require_directory ./home
 */
