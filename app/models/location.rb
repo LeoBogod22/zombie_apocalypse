@@ -17,6 +17,12 @@ class Location < ActiveRecord::Base
     resource_types.map { |resource| places.where(resource_type: resource).inject(0){|sum, r| sum + r.resource_count}}
   end
 
+  def resource_places_count
+    resource_types = resource_ids
+
+    resource_types.map { |resource| places.where(resource_type: resource).count}
+  end
+
   def others_count
     places.where(resource_type: 0).inject(0){|sum, r| sum + r.resource_count}
   end

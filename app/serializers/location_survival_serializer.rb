@@ -5,7 +5,8 @@ class LocationSurvivalSerializer < ActiveModel::Serializer
     {
       resource_ids: object.resource_ids,
       resource_strings: object.resource_strings,
-      resources_count: object.resources_count
+      resources_count: object.resources_count,
+      resource_places_count: object.resource_places_count
     }
   end
 end

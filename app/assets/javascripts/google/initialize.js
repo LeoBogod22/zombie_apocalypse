@@ -68,4 +68,5 @@ function resetPage () {
 
   $("#location-results div").show().removeClass("active");
   $("#location-results div:eq(0)").addClass("active");
+  $("#location-results").removeData("id");
 }

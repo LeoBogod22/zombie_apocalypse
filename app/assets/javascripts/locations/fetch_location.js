@@ -26,7 +26,6 @@ function getLocation (id) {
         "<div id='location-resource-list'>" + resourceList + "</div>";
 
       $("#location-basic-info").append(basicInfo);
-      // debugger;
       fetchSurvivalStats(id);
       locationNavbarClickCallback();
     },
@@ -61,7 +60,6 @@ function fetchSurvivalStats (id) {
     method: 'GET',
     dataType: 'json',
     success: function (results) {
-      // debugger;
       var survival = results.location_survival.survival ? "You survived the zombie outbreak you lucky son of a gun" : "I'm sorry but you didn't make it. Please don't eat my brain.";
       $("#location-survival-stats, #location-survival-summary").hide();
 
@@ -102,6 +100,11 @@ function buildSurivalSummary (results) {
 
   // Managed to survive
   if (results.location_survival.survival) {
+// Need to add more customization based on their resources
+// if they have particularly high survival odds, chances are they have a lot of resources nearby
+// Should add to survival algorithm to account find out if their survival odds are high because of high resources or low population
+
+
     summary = results.location_survival.population_density > 8098.8928 ?
     // Managed to survive in a populated city
       "You managed to scrounge up enough resources nearby to survive the zombie outbreak. " +
