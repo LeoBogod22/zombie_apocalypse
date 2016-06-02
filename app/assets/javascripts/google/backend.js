@@ -52,7 +52,7 @@ function createPlace (placeObject) {
     'locksmith':              {'types': ['tools'], 'count': [5]}
   };
 
-  var resourceType;
+  var description;
   // Look through the place object's types and find the type that matches.
   // If the type is a natural_feature but is not a natural source of water (pond, lake, river), break from the loop
   // Else get the resource type then break
@@ -61,20 +61,21 @@ function createPlace (placeObject) {
       if (placeObject.types[i] === 'natural_feature' && placeObject.name.search(/(\bpond\b|\blake\b|\briver\b)/ig) < 0) {
         break;
       } else {
-        resourceType = placeObject.types[i];
+        description = placeObject.types[i];
         break;
       }
     }
   };
 
-  if (resourceType) {
+  if (description) {
     var placeInfo = {
       name: placeObject.name,
       address: placeObject.vicinity,
-      resource_type: placeResourceConversion[resourceType],
+      resource_type: placeResourceConversion[description],
       latitude: placeObject.geometry.location.lat(),
       longitude: placeObject.geometry.location.lng(),
-      location_id: $("#location-results").data("id")
+      location_id: $("#location-results").data("id"),
+      description: description
     };
 
     // POST /places
@@ -103,7 +104,8 @@ function createGunShop (placeObject) {
     resource_type: {'types': ['weapons'], 'count': [30]},
     latitude: placeObject.geometry.location.lat(),
     longitude: placeObject.geometry.location.lng(),
-    location_id: $("#location-results").data("id")
+    location_id: $("#location-results").data("id"),
+    description: 'gun_shop'
   };
 
   // POST /places

@@ -19,9 +19,9 @@ html, body, #app-container, #app-container .row {
 }
 
 #results-header {
-  height: 10%;
+  height: 5%;
 }
 
 #location-results-container, #place-results-container {
-  height: 45%;
+  height: 47.5%;
 }

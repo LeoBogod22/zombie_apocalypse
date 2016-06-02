@@ -29,7 +29,8 @@ class PlacesController < ApplicationController
         latitude: params["latitude"],
         longitude: params["longitude"],
         resource_type: Place.resource_types[resource],
-        resource_count: params["resource_type"]["count"][index]
+        resource_count: params["resource_type"]["count"][index],
+        description: params["description"]
       )
     end
 
