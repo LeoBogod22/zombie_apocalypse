@@ -27,6 +27,7 @@ function getLocation (id) {
 
       $("#location-basic-info").append(basicInfo);
       fetchSurvivalStats(id);
+      createPlaceNavbar(results.location.resources, id);
       locationNavbarClickCallback();
     },
     fail: function(error) {
