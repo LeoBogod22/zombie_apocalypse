@@ -23,3 +23,20 @@ nav.navbar {
   height: 70%;
   border: 2px solid black;
 }
+
+/* Place Results */
+#places-list {
+  height: 100%;
+  width: 100%;
+  overflow: scroll;
+  list-style: none;
+}
+#places-list li {
+  width: 90%;
+  border: 1px solid black;
+  margin: 0.2em 0em;
+}
+#resource-summary, #place-info {
+  height: 50%;
+  overflow: scroll;
+}

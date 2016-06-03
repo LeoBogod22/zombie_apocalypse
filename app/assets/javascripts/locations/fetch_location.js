@@ -48,7 +48,7 @@ function moveOtherToBack (strings, counts) {
 function buildResourceList (resourceStrings, resourceCounts) {
   var resourceList = "<ul>";
   for (var i = 0; i < resourceStrings.length; i++) {
-    resourceList += "<li>" + resourceStrings[i] + " - " + resourceCounts[i] + " points" + "</li>"
+    resourceList += "<li>" + resourceStrings[i] + " - " + resourceCounts[i] + "</li>"
   }
   resourceList += "</ul>";
   return resourceList;
@@ -105,7 +105,6 @@ function buildSurivalSummary (results) {
 // if they have particularly high survival odds, chances are they have a lot of resources nearby
 // Should add to survival algorithm to account find out if their survival odds are high because of high resources or low population
 
-
     summary = results.location_survival.population_density > 8098.8928 ?
     // Managed to survive in a populated city
       "You managed to scrounge up enough resources nearby to survive the zombie outbreak. " +
@@ -113,7 +112,7 @@ function buildSurivalSummary (results) {
       "It was mass hysteria and you trampled some people while looting, trying to get away from the zombie horde, including your neighbor, " + randomName + ". " +
       "I'm sorry but " + randomName + " is a zombie now. " + gender + " will live on in spirit as a flesh eating cannibal that moves at 2 miles per hour. " +
       "But don't worry. One day when you come out from your shelter with the thousand-yard stare and shotgun in hand, you will be the one to take back society and rebuild it better, with blackjack and hookers. " +
-      "In fact, forget the society and the blackjack. Ah screw the whole thing."
+      "In fact, forget the society and the blackjack. "
       :
     // Managed to survive in a less populated city
       "Wow you survived and there was no competition for supplies. " +
@@ -129,17 +128,16 @@ function buildSurivalSummary (results) {
       "The zombie horde was too much. You live in a pretty populated place. " +
       "There were way too many zombies in the area and you were completely surrounded while trying to get away. " +
       "You were in a market trying to loot whatever you could when you hear the sound of someone screaming. " +
-      "Your neighbor " + randomName + " managed to lure every zombie in the surrounding areas to your location. " +
-      "The zombies break down the doors and windows to get to the people inside. Sadly you were one of them. In the rush to get away, you were pushed out of the way by some selfish person trying to escape. " +
-      "If it makes you feel any better, they also became a zombie an hour later. " +
+      "Your friend " + randomName + " managed to lure every zombie in the surrounding areas to your location. " +
+      "The zombies break down the doors and windows to get to the people inside. Sadly you were one of them. In the rush to get away, you were knocked down by someone also trying to escape. " +
+      "Don't know if it makes you feel any better, but they also became a zombie an hour later. " +
       "Oh, and don't worry about " + randomName + ". " + gender + " managed to get away and find a place to hide away, until the zombies left for some other place. " +
       randomName + " found someone nice to repopulate society with and " + gender.toLowerCase() + " will name their " + nthChild + " child after you in your memory."
       :
     // Did not survive in a less populated city
       "You didn't survive? That's actually surprising. There are not that many people in your area. What zombies did you actually find? " +
       "Where they the like the really fast zombies from World War Z? Man I hate those. " +
-      "Sorry, but you never stood a chance against those World War Z zombies. Why couldn't you get the Romero zombies? Now those you could probably outrun. Hell I think you can even out walk those zombies. " +
-      "Sad. I will remember you in spirit. Don't eat me."
+      "Sorry, but you never stood a chance against those World War Z zombies. That's just not fair. Why couldn't you get the Romero zombies? You could probably outwalk those. "
   }
 
   return summary;

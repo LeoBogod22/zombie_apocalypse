@@ -4,7 +4,7 @@ class Location < ActiveRecord::Base
 
 # Basic info on location based on places
   def resource_ids
-    places.pluck(:resource_type).uniq
+    places.map { |p| Place.resource_types[p.resource_type] }.uniq
   end
 
   def resource_strings
@@ -23,42 +23,42 @@ class Location < ActiveRecord::Base
     resource_types.map { |resource| places.where(resource_type: resource).count}
   end
 
-  def others_count
-    places.where(resource_type: 0).inject(0){|sum, r| sum + r.resource_count}
-  end
-
   def weapons_count
-    weapons_count = places.where(resource_type: 1).inject(0){|sum, r| sum + r.resource_count}
+    weapons_count = places.where(resource_type: 0).inject(0){|sum, r| sum + r.resource_count}
 
     weapons_count >= 30 ? 30 : weapons_count
   end
 
   def water_count
-    water_count = places.where(resource_type: 2).inject(0){|sum, r| sum + r.resource_count}
+    water_count = places.where(resource_type: 1).inject(0){|sum, r| sum + r.resource_count}
 
     water_count >= 30 ? 30 : water_count
   end
 
   def food_count
-    food_count = places.where(resource_type: 3).inject(0){|sum, r| sum + r.resource_count}
+    food_count = places.where(resource_type: 2).inject(0){|sum, r| sum + r.resource_count}
 
     food_count >= 20 ? 20 : food_count
   end
 
   def medicine_count
-    medicine_count = places.where(resource_type: 4).inject(0){|sum, r| sum + r.resource_count}
+    medicine_count = places.where(resource_type: 3).inject(0){|sum, r| sum + r.resource_count}
 
-    medicine_count >= 10 ? 10 : medicine_count
+    medicine_count >= 15 ? 15 : medicine_count
   end
 
   def tools_count
-    tools_count = places.where(resource_type: 5).inject(0){|sum, r| sum + r.resource_count}
+    tools_count = places.where(resource_type: 4).inject(0){|sum, r| sum + r.resource_count}
 
-    tools_count >= 10 ? 10 : tools_count
+    tools_count >= 5 ? 5 : tools_count
   end
 
   def transportation_count
-    transportation_count = places.where(resource_type: 6).inject(0){|sum, r| sum + r.resource_count}
+    transportation_count = places.where(resource_type: 5).inject(0){|sum, r| sum + r.resource_count}
+  end
+
+  def others_count
+    places.where(resource_type: 6).inject(0){|sum, r| sum + r.resource_count}
   end
 
 # GET/POST requests to external services
@@ -88,8 +88,8 @@ class Location < ActiveRecord::Base
     #   Weapons max points = 30
     #   Water max points = 30
     #   Food max points = 20
-    #   Medicine max points = 10
-    #   Tools max points = 10
+    #   Medicine max points = 15
+    #   Tools max points = 5
     #   Others and transportation are bonus points
     resources = [others_count, weapons_count, water_count, food_count, medicine_count, tools_count, transportation_count].sum / 100.0
 
