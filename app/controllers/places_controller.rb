@@ -17,6 +17,14 @@ class PlacesController < ApplicationController
     end
   end
 
+  # GET /places/:location_id/:resource_id
+  def resource
+    location = Location.find(params[:location_id])
+    @places = location.places.where(resource_type: params[:resource_id])
+
+    render json: @places
+  end
+
   def create
     puts params["location_id"]
     location = Location.find(params["location_id"])

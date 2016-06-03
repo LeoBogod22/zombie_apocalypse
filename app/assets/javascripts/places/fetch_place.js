@@ -31,4 +31,32 @@ function createPlaceNavbar (resources, locationId) {
 
   $("#place-resources-navbar").show().children().show();
   $("#place-resources-navbar .nav").append(resourceTabs);
+  var activeResourceTab = $("#place-resources-navbar .nav .nav-item a:eq(0)");
+  activeResourceTab.addClass("active");
+  getResourcePlaces(locationId, activeResourceTab.data("resource-id"));
+}
+
+function getResourcePlaces (locationId, resourceId) {
+  $.ajax({
+    url: '/places/' + locationId + '/' + resourceId,
+    method: 'GET',
+    dataType: 'json',
+    success: function (results) {
+      var resourcePlacesList = "";
+      for (var i = 0; i < results.places.length; i++) {
+        var place = results.places[i];
+
+        resourcePlacesList += "<div class='resource-place' data-place-id='" + place.id + "'>" + place.name + "</div>"
+      }
+
+      $("#resources-display").append(resourcePlacesList);
+
+
+      $("#place-results").show();
+      $("#resources-display").show();
+    },
+    error: function (error) {
+      console.log("Something went wrong: " + error);
+    }
+  });
 }

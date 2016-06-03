@@ -1,4 +1,4 @@
-html, body, #app-container, #app-container .row {
+html, body, #app-container, #app-container .row, #results {
   height: 100%;
 }
 
@@ -14,8 +14,8 @@ html, body, #app-container, #app-container .row {
   z-index: 5;
 }
 
-#results {
-  height: 100%;
+#results #location-results-container, #results #place-results-container {
+  height: 50%;
 }
 
 #results-header {

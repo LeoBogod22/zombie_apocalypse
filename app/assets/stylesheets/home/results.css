@@ -1,9 +1,25 @@
-.results-display div {
+.results-display > div {
+  height: 100%;
+  width: 100%;
   overflow: scroll;
+}
+
+nav.navbar {
+  margin: 0 auto;
 }
 
 #location-results-navbar, #location-results, #place-resources-navbar, #place-results {
   display: none;
 }
 
-/*#location-results*/
+/* Location Results */
+#location-address {
+  height: 10%;
+}
+#location-results-navbar {
+  height: 20%;
+}
+#location-results {
+  height: 70%;
+  border: 2px solid black;
+}

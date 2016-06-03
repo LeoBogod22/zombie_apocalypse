@@ -4,7 +4,7 @@ function locationClickCallback () {
     var id = $("#location-results").data("id");
 
     getLocation(id);
-    $(e.target).hide();
+    $(e.target).remove();
   });
 }
 
