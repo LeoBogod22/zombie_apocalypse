@@ -24,7 +24,7 @@ function createLocation (locationObject) {
 
       locationClickCallback();
     },
-    fail: function(error) {
+    error: function(xhr, status, error) {
       console.log("There was an error saving your location: " + error);
       $("#location-results").append("There were no results for your location.");
     }
@@ -89,7 +89,7 @@ function createPlace (placeObject) {
       success: function(results) {
         console.log("Create place record from following info: " + JSON.stringify(placeInfo));
       },
-      fail: function(error) {
+      error: function(xhr, status, error) {
         console.log("There was an error saving your place: " + error);
       }
     });
@@ -119,7 +119,7 @@ function createGunShop (placeObject) {
     success: function(results) {
       console.log("Create place record from following info: " + JSON.stringify(placeInfo));
     },
-    fail: function(error) {
+    error: function(xhr, status, error) {
       console.log("There was an error saving your place: " + error);
     }
   });

@@ -1,5 +1,34 @@
 function placeClickCallback () {
+  $(".resource-place").click(function (e) {
+    e.preventDefault();
+    var placeId = $(e.target).data('place-id');
 
+    $.ajax({
+      url: '/places/' + placeId,
+      method: 'GET',
+      dataType: 'json',
+      success: function (results) {
+        $("#place-info").empty();
+        $("#place-info").append(JSON.stringify(results));
+      },
+      error: function (xhr, status, error) {
+        console.log("Something went wrong: " + error);
+      }
+    })
+  });
+}
+
+function resourceTabClickCallback () {
+  $(".resource-tab").click(function (e) {
+    e.preventDefault();
+    $(".resource-tab").removeClass("active");
+
+    $(e.target).addClass("active");
+    var locationId = $("#location-results").data("id");
+    var resourceId = $(e.target).data("resource-id");
+
+    getResourcePlaces(locationId, resourceId);
+  });
 }
 
 function createPlaceNavbar (resources, locationId) {
@@ -34,6 +63,7 @@ function createPlaceNavbar (resources, locationId) {
   var activeResourceTab = $("#place-resources-navbar .nav .nav-item a:eq(0)");
   activeResourceTab.addClass("active");
   getResourcePlaces(locationId, activeResourceTab.data("resource-id"));
+  resourceTabClickCallback();
 }
 
 function getResourcePlaces (locationId, resourceId) {
@@ -46,16 +76,15 @@ function getResourcePlaces (locationId, resourceId) {
       for (var i = 0; i < results.places.length; i++) {
         var place = results.places[i];
 
-        resourcePlacesList += "<div class='resource-place' data-place-id='" + place.id + "'>" + place.name + "</div>"
+        resourcePlacesList += "<a href='#' class='resource-place' data-place-id='" + place.id + "'>" + place.name + "</a>"
       }
 
-      $("#resources-display").append(resourcePlacesList);
+      $("#resources-display").empty().append(resourcePlacesList);
+      $("#place-results, #resources-display, #place-info").show();
 
-
-      $("#place-results").show();
-      $("#resources-display").show();
+      placeClickCallback();
     },
-    error: function (error) {
+    error: function (xhr, status, error) {
       console.log("Something went wrong: " + error);
     }
   });

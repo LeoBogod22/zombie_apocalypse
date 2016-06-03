@@ -30,7 +30,7 @@ function getLocation (id) {
       createPlaceNavbar(results.location.resources, id);
       locationNavbarClickCallback();
     },
-    fail: function(error) {
+    error: function(xhr, status, error) {
       console.log("There was an error saving your place: " + error);
     }
   });
@@ -72,7 +72,7 @@ function fetchSurvivalStats (id) {
 
       $("#location-survival-summary").append(buildSurivalSummary(results));
     },
-    error: function (error) {
+    error: function (xhr, status, error) {
       console.log("Something went wrong: " + error);
     }
   });
