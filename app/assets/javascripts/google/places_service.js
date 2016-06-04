@@ -14,7 +14,12 @@ function findAndMapPlaces (map, coordinates) {
 
     // All place types done. Set timeout to account for asynchronous nature of external api calls
     if (i === types.length - 1) {
-      setTimeout(document.dispatchEvent(placesDone), 500);
+      setTimeout(function() {
+        document.dispatchEvent(placesDone);
+
+        // will need to place with timeout to find average time for when the backend will finish the requests
+        // havin problem of backend being too slow creating places in time for when the client requests it
+      }, 300);
     }
   };
 }

@@ -2,7 +2,6 @@ function showResults () {
   $("#results").show();
   var activeResultIndex = $("#results-navbar .nav .nav-item a").index($("#results-navbar a.active"));
 
-  debugger;
   // location
   if (activeResultIndex === 0) {
     $("#place-results-container").hide();
