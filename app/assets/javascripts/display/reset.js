@@ -19,5 +19,7 @@ function resetPage () {
 }
 
 function resetActive () {
-
+  $("#results-navbar .nav .nav-item a").eq(0).addClass("active");
+  $("#location-results-navbar .nav .nav-item a").eq(0).addClass("active");
+  $("#place-resources-navbar .nav .nav-item a").eq(0).addClass("active");
 }

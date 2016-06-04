@@ -5,11 +5,18 @@ var currentCoords;
 var defaultAddress = "New York, NY";
 
 var placesDone = new Event('placesDone');
+var haveResults = new Event('haveResults');
+
 document.addEventListener('placesDone', function (e) {
   getLocation(getLocationId());
+}, false);
 
-  // might need event callbacks for when results are done
-  // when done show results
+document.addEventListener('haveResults', function (e) {
+  resetActive();
+
+  // doesn't work yet
+  showResults();
+  resultsNavbarClickCallback();
 }, false);
 
 // Sets the map to default location then adds listener for input

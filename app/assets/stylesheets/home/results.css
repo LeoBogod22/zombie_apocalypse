@@ -13,7 +13,7 @@ nav.navbar {
 }
 
 /* Location Results */
-#location-results-container, #location-results div {
+#location-results-container, #location-results > div {
   display: none;
 }
 #location-address {

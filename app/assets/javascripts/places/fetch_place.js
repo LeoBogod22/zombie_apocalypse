@@ -17,9 +17,10 @@ function createPlaceNavbar (resources, locationId) {
 
   $("#place-resources-navbar").show().children().show();
   $("#place-resources-navbar .nav").append(resourceTabs);
-  var activeResourceTab = $("#place-resources-navbar .nav .nav-item a:eq(0)");
-  activeResourceTab.addClass("active");
-  getResourcePlaces(locationId, activeResourceTab.data("resource-id"));
+
+  getResourcePlaces(locationId, resourceIds[0]);
+  document.dispatchEvent(haveResults);
+
   resourceTabClickCallback();
 }
 
@@ -29,10 +30,9 @@ function resourceTabClickCallback () {
     $(".resource-tab").removeClass("active");
 
     $(e.target).addClass("active");
-    var locationId = $("#location-results").data("id");
     var resourceId = $(e.target).data("resource-id");
 
-    getResourcePlaces(locationId, resourceId);
+    getResourcePlaces(getLocationId(), resourceId);
   });
 }
 
