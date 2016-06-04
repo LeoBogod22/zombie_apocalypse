@@ -7,7 +7,7 @@ html, body, #app-container, #app-container .row, #results {
 }
 
 #pac-location-input {
-  width: 50%;
+  width: 100%;
 }
 
 .pac-container {

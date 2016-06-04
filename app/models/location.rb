@@ -3,12 +3,12 @@ class Location < ActiveRecord::Base
   validates_presence_of :address, :latitude, :longitude
 
 # Basic info on location based on places
-  def resource_ids
-    places.map { |p| Place.resource_types[p.resource_type] }.uniq
-  end
-
   def resource_strings
     places.map { |p| p.resource_type }.uniq
+  end
+
+  def resource_ids
+    resource_strings.map {|resource| Place.resource_types[resource] }
   end
 
   def resources_count

@@ -20,3 +20,4 @@ var types =  [
 //= require_directory ./google
 //= require locations
 //= require places
+//= require prototypes

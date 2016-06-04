@@ -4,25 +4,13 @@ function createPlaceNavbar (resources, locationId) {
   var resourceCounts = resources.resources_count;
   var resourcePlacesCount = resources.resource_places_count;
 
-  // Put other in back of arrays
-  if (resourceStrings.indexOf("other") >= 0) {
-    var index = resourceStrings.indexOf("other");
-
-    resourceStrings.push(resourceStrings.splice(index, 1)[0]);
-    resourceIds.push(resourceIds.splice(index, 1)[0]);
-    resourceCounts.push(resourceCounts.splice(index, 1)[0]);
-    resourcePlacesCount.push(resourcePlacesCount.splice(index, 1)[0]);
-  }
-
-  // debugger;
   var resourceTabs = "";
   for (var i = 0; i < resourceStrings.length; i++) {
     var resource = resourceStrings[i];
-    // debugger;
     resourceTabs +=
       "<li class='nav-item'>" +
         "<a href='#' class='resource-tab' data-resource-id='" + resourceIds[i] + "' data-resource-count='" + resourceCounts[i] + "' data-resource-places-count='" + resourcePlacesCount[i] + "'>" +
-          resource[0].toUpperCase() + resource.slice(1) +
+          resource.capitalize() +
         "</a>" +
       "</li>";
   }
@@ -95,7 +83,6 @@ function getResourceSummary (resourceId) {
   var resourceSummary = resource != "other" ?
     "You had " + resourceTab.data("resource-places-count") + " places with " + resource + " nearby. " : "";
 
-    console.log("Capacity of resource " + resourceId + " is " + capacity);
   if (capacity) {
     resourceSummary += "There was plenty of " + resource + " but you could only carry " + resourceCap[resourceId];
   } else if (resourceId === 5) {
@@ -120,7 +107,17 @@ function placeClickCallback () {
       dataType: 'json',
       success: function (results) {
         $("#place-info").empty();
-        $("#place-info").append(JSON.stringify(results));
+        // name, address, lat, lng, resource type, resource count, description
+        var placeInfo =
+          "<h5>" + results.place.name + "</h5>" +
+          "<strong>Address: </strong>" + results.place.address + "<br>" +
+          "<strong>Latitude: </strong>" + results.place.latitude + "<br>" +
+          "<strong>Longitude: </strong>" + results.place.longitude + "<br>" +
+          "<strong>Resource: </strong>" + results.place.resource_type + "<br>" +
+          "<strong>Count: </strong>" + results.place.resource_count + "<br>" +
+          "<strong>Description: </strong>" + results.place.description + "<br>";
+
+        $("#place-info").append(placeInfo);
       },
       error: function (xhr, status, error) {
         console.log("Something went wrong: " + error);

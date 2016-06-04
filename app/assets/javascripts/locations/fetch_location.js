@@ -17,7 +17,9 @@ function getLocation (id) {
       $("#location-results-navbar, #location-results").show();
       $("#location-results .active").show().children("div").show();
 
-      var [resourceStrings, resourceCounts] = moveOtherToBack(results.location.resources.resource_strings, results.location.resources.resources_count);
+      moveOtherToBack(results.location.resources);
+      var resourceStrings = results.location.resources.resource_strings;
+      var resourceCounts = results.location.resources.resources_count;
       var resourceList = "<h5>Resources nearby</h5>" + buildResourceList(resourceStrings, resourceCounts);
 
       var basicInfo =
@@ -36,26 +38,34 @@ function getLocation (id) {
   });
 }
 
-function moveOtherToBack (strings, counts) {
-  if (strings.indexOf("other") >= 0) {
-    var index = strings.indexOf("other");
-    strings.push(strings.splice(index, 1)[0]);
-    counts.push(counts.splice(index, 1)[0]);
+function moveOtherToBack (resources) {
+  var resourceStrings = resources.resource_strings;
+  var resourceIds = resources.resource_ids;
+  var resourceCounts = resources.resources_count;
+  var resourcePlacesCount = resources.resource_places_count;
+
+  // Put other in back of arrays
+  if (resourceStrings.indexOf("other") >= 0) {
+    var index = resourceStrings.indexOf("other");
+
+    resourceStrings.swapAt(index);
+    resourceIds.swapAt(index);
+    resourceCounts.swapAt(index);
+    resourcePlacesCount.swapAt(index);
   }
-  return [strings, counts];
+  return resources;
 }
 
 function buildResourceList (resourceStrings, resourceCounts) {
   var resourceList = "<ul>";
   for (var i = 0; i < resourceStrings.length; i++) {
-    resourceList += "<li>" + resourceStrings[i] + " - " + resourceCounts[i] + "</li>"
+    resourceList += "<li>" + resourceStrings[i].capitalize() + " - " + resourceCounts[i] + "</li>"
   }
   resourceList += "</ul>";
   return resourceList;
 }
 
 function fetchSurvivalStats (id) {
-  // debugger;
   $.ajax({
     url: '/locations/' + id + '/survival',
     method: 'GET',
