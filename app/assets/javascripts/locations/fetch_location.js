@@ -1,13 +1,3 @@
-function locationClickCallback () {
-  $("#more-location-info").click(function (e) {
-    e.preventDefault();
-    var id = $("#location-results").data("id");
-
-    getLocation(id);
-    $(e.target).remove();
-  });
-}
-
 function getLocation (id) {
   $.ajax({
     url: '/locations/' + id,
@@ -23,6 +13,7 @@ function getLocation (id) {
       var resourceList = "<h5>Resources nearby</h5>" + buildResourceList(resourceStrings, resourceCounts);
 
       var basicInfo =
+        "<div id='location-address'><strong>Address: </strong>" + results.location.address + "</div>" +
         "<div id='location-latitude'><strong>Latitude: </strong>" + results.location.latitude + "</div>" +
         "<div id='location-longitude'><strong>Longitude: </strong>" + results.location.longitude + "</div>" +
         "<div id='location-resource-list'>" + resourceList + "</div>";

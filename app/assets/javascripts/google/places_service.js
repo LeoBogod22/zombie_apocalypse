@@ -11,6 +11,11 @@ function findAndMapPlaces (map, coordinates) {
 
   for (var i = 0; i < types.length; i++) {
     searchPlaceByType(service, coordinates, types[i], mapPlaceCallback);
+
+    // All place types done. Set timeout to account for asynchronous nature of external api calls
+    if (i === types.length - 1) {
+      setTimeout(document.dispatchEvent(placesDone), 500);
+    }
   };
 }
 

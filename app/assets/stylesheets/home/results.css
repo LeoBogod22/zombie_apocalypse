@@ -8,11 +8,14 @@ nav.navbar {
   margin: 0 auto;
 }
 
-#location-results-navbar, #location-results, #place-resources-navbar, #place-results {
+#results {
   display: none;
 }
 
 /* Location Results */
+#location-results-container, #location-results div {
+  display: none;
+}
 #location-address {
   height: 10%;
 }
@@ -25,6 +28,9 @@ nav.navbar {
 }
 
 /* Place Results */
+#place-results-container {
+  display: none;
+}
 #places-list {
   height: 100%;
   width: 100%;

@@ -4,6 +4,14 @@ var infowindow;
 var currentCoords;
 var defaultAddress = "New York, NY";
 
+var placesDone = new Event('placesDone');
+document.addEventListener('placesDone', function (e) {
+  getLocation(getLocationId());
+
+  // might need event callbacks for when results are done
+  // when done show results
+}, false);
+
 // Sets the map to default location then adds listener for input
 function initGoogleMap () {
 
@@ -43,7 +51,6 @@ function resetGoogleMapLocation (address) {
       map.setCenter(results[0].geometry.location);
       if (address != defaultAddress){
         createLocation(results[0]);
-        findAndMapPlaces(map, currentCoords);
       }
 
     } else {

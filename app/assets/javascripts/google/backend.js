@@ -15,14 +15,7 @@ function createLocation (locationObject) {
     contentType: 'application/json',
     success: function(results){
       $("#location-results").attr("data-id", results.location.id);
-
-      var locationAddress = "<strong>Your location:</strong> " + results.location.address;
-      var locationSeeMoreLink = "<a href='' id='more-location-info'>See more</a>";
-
-      $("#location-address").append(locationAddress);
-      $("#location-results-container").append(locationSeeMoreLink);
-
-      locationClickCallback();
+      findAndMapPlaces(map, currentCoords);
     },
     error: function(xhr, status, error) {
       console.log("There was an error saving your location: " + error);
@@ -79,7 +72,6 @@ function createPlace (placeObject) {
     };
 
     // POST /places
-
     $.ajax({
       url: "/places",
       method: "POST",
@@ -93,8 +85,8 @@ function createPlace (placeObject) {
         console.log("There was an error saving your place: " + error);
       }
     });
-  }
 
+  }
 }
 
 function createGunShop (placeObject) {

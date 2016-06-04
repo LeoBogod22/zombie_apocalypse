@@ -4,14 +4,20 @@ function resetPage () {
     #location-basic-info,
     #location-survival-stats,
     #location-survival-summary,
-    #place-resources-navbar ul,
+    #place-resources-navbar .places-list,
     #resources-display,
     #place-info
   `).empty();
 
   $("#more-location-info").remove();
 
-  $("#location-results div").show().removeClass("active");
-  $("#location-results div:eq(0)").addClass("active");
+  $("#results").hide();
+  $("#location-results div").hide().removeClass("active");
+  $("#location-results-container, #place-results-container").hide();
+
   $("#location-results").removeData("id");
+}
+
+function resetActive () {
+
 }
