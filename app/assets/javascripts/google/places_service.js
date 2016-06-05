@@ -19,7 +19,7 @@ function findAndMapPlaces (map, coordinates) {
 
         // will need to place with timeout to find average time for when the backend will finish the requests
         // havin problem of backend being too slow creating places in time for when the client requests it
-      }, 300);
+      }, 500);
     }
   };
 }

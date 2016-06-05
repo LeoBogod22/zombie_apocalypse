@@ -1,6 +1,5 @@
 .results-display > div {
   height: 100%;
-  width: 100%;
   overflow: scroll;
 }
 
@@ -12,6 +11,16 @@ nav.navbar {
   display: none;
 }
 
+#results ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+#results ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
 /* Location Results */
 #location-results-container, #location-results > div {
   display: none;
@@ -20,20 +29,26 @@ nav.navbar {
   height: 10%;
 }
 #location-results-navbar {
-  height: 20%;
+  max-height: 20%;
 }
 #location-results {
   height: 70%;
   border: 2px solid black;
+}
+#location-results div {
+  padding: 0.5em;
 }
 
 /* Place Results */
 #place-results-container {
   display: none;
 }
+#place-results {
+  border: 2px solid black;
+  padding: 0.5em;
+}
 #places-list {
   height: 100%;
-  width: 100%;
   overflow: scroll;
   list-style: none;
 }

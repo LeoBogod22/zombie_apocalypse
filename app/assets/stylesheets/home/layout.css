@@ -1,4 +1,4 @@
-html, body, #app-container, #app-container .row, #results {
+html, body, #app-container, #app-container > .row, #results {
   height: 100%;
 }
 
