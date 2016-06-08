@@ -13,12 +13,15 @@ html, body, .app-wraper, #map-canvass {
   position: absolute;
 }
 
+/* Location input */
 #pac-location-form, #results {
   z-index: 5;
 }
 #pac-location-form{
   top: 25px;
 }
+
+/* Results */
 #results {
   height: 80vh;
   padding: 0;
@@ -29,14 +32,17 @@ html, body, .app-wraper, #map-canvass {
   margin: 1.0em 0em;
   padding: 0em 0em;
 }
+#results-navbar, #location-results-navbar, #place-resources-navbar, #results-navbar ul, #location-results-navbar ul, #place-resources-navbar ul {
+  width: 100%;
+}
+#place-resources-navbar {
+    margin: 0 auto;
+}
 
 #location-results, #place-results {
   margin: 0 auto;
 }
 
-#results-navbar, #location-results-navbar, #place-resources-navbar {
-  margin: 0 auto;
-}
 #results-navbar {
   height: 10vh;
   max-height: 10vh;

@@ -1,3 +1,7 @@
+body {
+  color: rgb(0, 0, 0);
+}
+
 /* Location input */
 #pac-location-input {
   background-color: transparent;
@@ -13,9 +17,12 @@
 /* Results */
 #results nav a {
   color: #890000;
-  background-color: rgba(230, 230, 230, 0.5);
+  background-color: rgba(50, 50, 50, 0.2);
   border-radius: 0.5em;
   border: 3px rgba(20, 20, 20, 0.8) solid;
+}
+#results nav a:hover {
+  background-color: rgb(50, 50, 50);
 }
 
 #results ::-webkit-scrollbar {
@@ -28,5 +35,12 @@
     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
 }
 #results ::-webkit-scrollbar-corner {
-  -webkit-appearance: none;  
+  -webkit-appearance: none;
+}
+
+#places-list li {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+#places-list li a {
+  color: #890000;
 }
