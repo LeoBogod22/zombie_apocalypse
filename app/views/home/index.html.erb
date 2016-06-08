@@ -1,73 +1,95 @@
-<div class="container-fluid" id="app-container">
-  <div class="row">
-    <div class="col-xs-6">
+<div class="app-wrapper">
+  <!-- App -->
+  <div class="app container-fluid">
+    <div class="row">
 
-      <div class="google-pac-container">
-        <h5>Form</h5>
-        <form id="pac-location-form">
-          <input id="pac-location-input" type="text" name="pac-location-input">
-          <input type="submit" style="visibility: hidden">
-        </form>
-      </div>
+      <!-- Location input -->
+      <form id="pac-location-form" class="col-xs-6">
+        <input id="pac-location-input" type="text" name="pac-location-input" placeholder="Enter a location">
+        <input type="submit" style="visibility: hidden">
+      </form>
+      <!-- End of location input -->
 
-      <div id="map-canvass"></div>
+      <!-- Results -->
+      <div class="col-xs-6 container-fluid" id="results">
 
-    </div>
-
-    <div id="results" class="col-xs-6">
-      <h5 id="results-header">Results</h5>
-      <nav id="results-navbar" class="navbar">
-        <ul class="nav navbar-nav">
-          <li class="nav-item"><a href="#">Location</a></li>
-          <li class="nav-item"><a href="#">Places nearby</a></li>
-        </ul>
-      </nav>
-
-      <!-- Location results -->
-      <div id="location-results-container">
-        <nav id="location-results-navbar" class="navbar">
+        <!-- Results navbar - Location, Places nearby -->
+        <nav id="results-navbar" class="navbar row">
           <ul class="nav navbar-nav">
-            <li class="nav-item">
-              <a href="#" data-target="location-basic-info">Info</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" data-target="location-survival-stats">Survival Stats</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" data-target="location-survival-summary">Summary</a>
-            </li>
+            <li class="nav-item"><a href="#">Location</a></li>
+            <li class="nav-item"><a href="#">Places nearby</a></li>
           </ul>
         </nav>
+        <!-- End of results navbar -->
 
-        <div id="location-results" class="results-display">
-          <div id="location-basic-info"></div>
-          <div id="location-survival-stats"></div>
-          <div id="location-survival-summary"></div>
-        </div>
-      </div>
+        <!-- Location results container -->
+        <div id="location-results-container" class="row">
+          <!-- Location navbar - toggle display between info, survival stats, and survival summary -->
+          <nav id="location-results-navbar" class="navbar">
+            <ul class="nav navbar-nav">
+              <li class="nav-item">
+                <a href="#" data-target="location-basic-info">Info</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" data-target="location-survival-stats">Survival Stats</a>
+              </li>
+              <li class="nav-item">
+                <a href="#" data-target="location-survival-summary">Summary</a>
+              </li>
+            </ul>
+          </nav>
+          <!-- End of location navbar -->
 
-      <!-- Places results -->
-      <div id="place-results-container" class="container-fluid">
-        <nav id="place-resources-navbar" class="navbar row">
-          <ul class="nav navbar-nav">
-
-          </ul>
-        </nav>
-
-        <div id="place-results" class="results-display row">
-          <ul id="places-list" class="col-xs-6"></ul>
-          <div class="col-xs-6">
-            <div id="resource-summary"></div>
-            <div id="place-info"></div>
+          <!-- Location results display -->
+          <div id="location-results" class="results-display">
+            <!-- Location basic info -->
+            <div id="location-basic-info"></div>
+            <!-- Survival stats -->
+            <div id="location-survival-stats"></div>
+            <!-- Survival summary -->
+            <div id="location-survival-summary"></div>
           </div>
+          <!-- End of location results display div -->
         </div>
+        <!-- End of location results container -->
+
+
+        <!-- Places results container -->
+        <div id="place-results-container" class="container-fluid row">
+          <!-- Resources Navbar - toggle display between places of resource types nearby -->
+          <nav id="place-resources-navbar" class="navbar row">
+            <ul class="nav navbar-nav">
+
+            </ul>
+          </nav>
+          <!-- End of resources navbar  -->
+
+          <!-- Display place results -->
+          <div id="place-results" class="results-display row">
+            <div class="col-xs-6 col-sm-6">
+              <ul id="places-list"></ul>
+            </div>
+            <div class="col-xs-6 col-sm-6">
+              <div id="resource-summary"></div>
+              <div id="place-info"></div>
+            </div>
+          </div>
+          <!-- End of place results display -->
+
+        </div>
+        <!-- End of place results container -->
+
       </div>
+      <!-- End of results -->
+
     </div>
-
   </div>
-</div>
+  <!-- End of App div -->
 
-<hr>
+  <!-- Map -->
+  <div id="map-canvass"></div>
+  <!-- End of Map div -->
+</div>
 
 
 <script type="text/javascript">

@@ -26,7 +26,47 @@ function initGoogleMap () {
   geocoder = new google.maps.Geocoder();
   infowindow = new google.maps.InfoWindow();
 
-  map = new google.maps.Map($("#map-canvass")[0], {zoom: 15, center: {lat: -34.397, lng: 150.644}});
+  var styles = [
+    {
+      stylers: [
+        {hue: '#7b0000'},
+        {visibility: 'simplified'},
+        {gamma: 0.25},
+        {weight: 0.5}
+      ]
+    },
+    {
+      elementType: 'labels',
+      stylers: [{hue: '#890000'}]
+    },
+    {
+      featureType: 'water',
+      stylers: [{color: '#2b262c'}]
+    },
+    {
+      featureType: 'administrative',
+      elementType: 'geometry.stroke',
+      stylers: [{color: '#890000'}]
+    }
+
+  ];
+  var styledMap = new google.maps.StyledMapType(styles, {name: 'Styled Map'});
+
+  map = new google.maps.Map($("#map-canvass")[0],{
+    zoom: 15,
+    center: {lat: -34.397, lng: 150.644},
+    mapTypeControl: false,
+    streetViewControl: false,
+    mapTypeControlOptions: {
+      mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+    },
+    zoomControlOptions: {
+      position: google.maps.ControlPosition.LEFT_BOTTOM
+    }
+  });
+
+  map.mapTypes.set('map_style', styledMap);
+  map.setMapTypeId('map_style');
 
   var autocomplete = new google.maps.places.Autocomplete($('#pac-location-input')[0]);
 

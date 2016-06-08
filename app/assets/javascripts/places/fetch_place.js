@@ -5,10 +5,13 @@ function createPlaceNavbar (resources, locationId) {
   var resourcePlacesCount = resources.resource_places_count;
 
   var resourceTabs = "";
+  var resourceTabWidth = 100.0 / resourceStrings.length;
+  var resourceTabHeigth = resourceStrings.length >= 6 ? 50.0 : 100.0;
+
   for (var i = 0; i < resourceStrings.length; i++) {
     var resource = resourceStrings[i];
     resourceTabs +=
-      "<li class='nav-item'>" +
+      "<li class='nav-item' style='width:" + Math.max(resourceTabWidth, 25) + "%; height:" + resourceTabHeigth + "%;'>" +
         "<a href='#' class='resource-tab' data-resource-id='" + resourceIds[i] + "' data-resource-count='" + resourceCounts[i] + "' data-resource-places-count='" + resourcePlacesCount[i] + "'>" +
           resource.capitalize() +
         "</a>" +
@@ -50,7 +53,7 @@ function getResourcePlaces (locationId, resourceId) {
       }
 
       $("#places-list").empty().append(resourcePlacesList);
-      $("#resource-summary").empty();
+      $("#resource-summary, #place-info").empty();
       $("#place-results").show();
 
       getResourceSummary(resourceId);

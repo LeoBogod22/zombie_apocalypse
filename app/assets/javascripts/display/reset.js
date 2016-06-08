@@ -4,7 +4,8 @@ function resetPage () {
     #location-basic-info,
     #location-survival-stats,
     #location-survival-summary,
-    #place-resources-navbar .places-list,
+    #place-resources-navbar .nav,
+    .places-list,
     #resources-display,
     #place-info
   `).empty();

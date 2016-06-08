@@ -1,0 +1,32 @@
+/* Location input */
+#pac-location-input {
+  background-color: transparent;
+  color: #890000;
+  padding: 0.5em;
+  width: 100%;
+}
+#pac-location-input:focus {
+  border-color: #890000;
+  outline: #890000;
+}
+
+/* Results */
+#results nav a {
+  color: #890000;
+  background-color: rgba(230, 230, 230, 0.5);
+  border-radius: 0.5em;
+  border: 3px rgba(20, 20, 20, 0.8) solid;
+}
+
+#results ::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+#results ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+#results ::-webkit-scrollbar-corner {
+  -webkit-appearance: none;  
+}
