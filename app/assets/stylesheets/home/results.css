@@ -1,3 +1,8 @@
+.results-display {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 .results-display > div {
   overflow: scroll;
   height: 50vh;

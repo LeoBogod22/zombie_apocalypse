@@ -13,11 +13,14 @@ body {
   border-color: #890000;
   outline: #890000;
 }
+.pac-container {
+  background: rgba(255, 255, 255, 0.8);;
+}
 
 /* Results */
 #results nav a {
   color: #890000;
-  background-color: rgba(50, 50, 50, 0.2);
+  background-color: rgba(50, 50, 50, 0.4);
   border-radius: 0.5em;
   border: 3px rgba(20, 20, 20, 0.8) solid;
 }
