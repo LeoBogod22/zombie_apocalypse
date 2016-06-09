@@ -75,9 +75,10 @@ class Location < ActiveRecord::Base
 
 # Calculations
   def percent_survival
-    # Average population density in square kilometers, via https://morrisseyweb.com/2012/03/09/the-average-us-population-density/
-    # 275 most populous US cities average out to 3127 people per square mile. 3127 sq mi => 8098.8928 sq km
-    average_population_density = 8098.8928;
+    # Source: U.S. Metropolitan Statistical Area Distance Profiles from http://www.census.gov/population/metro/data/pop_pro.html
+    # Took population-weighted densities by distance from city hall within 20 miles for all Metro areas and averaged out
+    # Converted population density from square miles to square kilometers
+    average_population_density = 6270.1540161;
 
     # Modifier based on your population density vs an average US city's population density
     # Percent modifier should be higher if your area is less dense and higher in denser areas

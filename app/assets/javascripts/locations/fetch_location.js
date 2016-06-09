@@ -106,7 +106,7 @@ function buildSurivalSummary (results) {
 // if they have particularly high survival odds, chances are they have a lot of resources nearby
 // Should add to survival algorithm to account find out if their survival odds are high because of high resources or low population
 
-    summary = results.location_survival.population_density > 8098.8928 ?
+    summary = results.location_survival.population_density > 6270.1540161 ?
     // Managed to survive in a populated city
       "You managed to scrounge up enough resources nearby to survive the zombie outbreak. " +
       "You got everything you could find and hulled up in your home afterwards. " +
@@ -124,7 +124,7 @@ function buildSurivalSummary (results) {
 
   // Became a zombie
   } else {
-    summary = results.location_survival.population_density > 8098.8928 ?
+    summary = results.location_survival.population_density > 6270.1540161 ?
     // Did not survive in a populated city
       "The zombie horde was too much. You live in a pretty populated place. " +
       "There were way too many zombies in the area and you were completely surrounded while trying to get away. " +
