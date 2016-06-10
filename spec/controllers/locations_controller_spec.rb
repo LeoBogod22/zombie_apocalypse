@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe LocationsController do
   let(:location) {Location.create(longitude: 1, latitude: 1, address: '123 test street')}
+  let!(:location2) {Location.create(longitude: 1, latitude: 1, address: '123 test street')}
   let!(:place1) {Place.create(location_id: location.id, name: "Some gun shop", description: "some place", address: "124 test street", latitude: 1, longitude: 1, resource_type: 0, resource_count: 30)}
   let!(:place2) {Place.create(location_id: location.id, name: "Some water source of some kind", description: "some place", address: "126 test street", latitude: 1, longitude: 1, resource_type: 1, resource_count: 30)}
   let!(:place3) {Place.create(location_id: location.id, name: "Some other supermarket", description: "some place", address: "127 test street", latitude: 1, longitude: 1, resource_type: 2, resource_count: 10)}
@@ -46,6 +47,27 @@ describe LocationsController do
       expect(resp["location"]["resources"]["resource_strings"]).to be_kind_of(Array)
       expect(resp["location"]["resources"]["resources_count"]).to be_kind_of(Array)
       expect(resp["location"]["resources"]["resource_places_count"]).to be_kind_of(Array)
+    end
+  end
+
+  context 'GET index' do
+    it "should return json with multiple locations" do
+      get :index, :format => :json
+      resp = JSON.parse(response.body)
+
+      expect(resp["locations"].length).to eq(2)
+    end
+  end
+
+  context 'POST create' do
+    it "should create a location then respond serialized json" do
+      params = {latitude: "123", longitude: "456", address: '123 test street'}
+      post :create, params
+      resp = JSON.parse(response.body)
+
+      expect(resp["location"]["latitude"]).to eq("123")
+      expect(resp["location"]["longitude"]).to eq("456")
+      expect(resp["location"]["address"]).to eq("123 test street")
     end
   end
 end
