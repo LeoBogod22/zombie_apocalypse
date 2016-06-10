@@ -112,8 +112,7 @@ function buildSurivalSummary (results) {
       "You got everything you could find and hulled up in your home afterwards. " +
       "It was mass hysteria and you trampled some people while looting, trying to get away from the zombie horde, including your neighbor, " + randomName + ". " +
       "I'm sorry but " + randomName + " is a zombie now. " + gender + " will live on in spirit as a flesh eating cannibal that moves at 2 miles per hour. " +
-      "But don't worry. One day when you come out from your shelter with the thousand-yard stare and shotgun in hand, you will be the one to take back society and rebuild it better, with blackjack and hookers. " +
-      "In fact, forget the society and the blackjack. "
+      "But don't worry. One day when you come out from your shelter with the thousand-yard stare and shotgun in hand, you will be the one to take back society and rebuild it better."
       :
     // Managed to survive in a less populated city
       "Wow you survived and there was no competition for supplies. " +
