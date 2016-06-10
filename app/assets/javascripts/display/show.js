@@ -24,5 +24,5 @@ function resultsNavbarClickCallback () {
     $("#results-navbar .nav .nav-item a").removeClass("active");
     $(e.target).addClass("active");
     showResults();
-  })
+  });
 }
