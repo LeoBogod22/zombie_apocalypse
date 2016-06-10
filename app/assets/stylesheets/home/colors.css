@@ -20,7 +20,7 @@ body {
 /* Results */
 #results nav a {
   color: #890000;
-  background-color: rgba(50, 50, 50, 0.4);
+  background-color: rgba(50, 50, 50, 0.6);
   border-radius: 0.5em;
   border: 3px rgba(20, 20, 20, 0.8) solid;
 }

@@ -22,6 +22,9 @@
 #location-results div, #place-results {
   padding: 0.5em;
 }
+#location-resource-list ul {
+  list-style: none;
+}
 
 /* Place results */
 #place-results {
