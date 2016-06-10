@@ -80,6 +80,3 @@ test:
 #
 production:
   <<: *default
-  database: zombie_apocalypse_production
-  username: zombie_apocalypse
-  password: <%= ENV['ZOMBIE_APOCALYPSE_DATABASE_PASSWORD'] %>
