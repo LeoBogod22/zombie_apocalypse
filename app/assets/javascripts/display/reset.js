@@ -1,14 +1,5 @@
 function resetPage () {
-  $(`
-    #location-address,
-    #location-basic-info,
-    #location-survival-stats,
-    #location-survival-summary,
-    #place-resources-navbar .nav,
-    .places-list,
-    #resources-display,
-    #place-info
-  `).empty();
+  $("#location-address, #location-basic-info, #location-survival-stats, #location-survival-summary, #place-resources-navbar .nav, .places-list, #resources-display, #place-info").empty();
 
   $("#more-location-info").remove();
 
